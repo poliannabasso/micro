@@ -1,25 +1,23 @@
-; Exemplo.s
+; Laboratório 00.s
 ; Desenvolvido para a placa EK-TM4C1294XL
-; Esquele de um novo Projeto para Keil
-; Prof. Guilherme de S. Peron	- 12/03/2018
-; Prof. Marcos E. P. Monteiro	- 12/03/2018
-; Prof. DaLuz           		- 25/02/2022
+; Polianna Beatriz Basso - 2302578
+; Pedro ...	- RA
+; Prof. Paulo DaLuz  - 25/02/2022
 
 ;################################################################################
 ; Declarações EQU
 ; <NOME>	EQU <VALOR>
+aleatorio EQU 0x20000400
+primos EQU 0x20000500
 ;################################################################################
 	AREA    |.text|, CODE, READONLY, ALIGN=2
 	THUMB
 ; Se alguma função do arquivo for chamada em outro arquivo	
     EXPORT Start					; Permite chamar a função Start a partir de 
-									; outro arquivo. No caso startup.s
-								
+									; outro arquivo. No caso startup.s						
 ; Se chamar alguma função externa	
 ;	IMPORT <func>          			; Permite chamar dentro deste arquivo uma 
 									; função <func>
-aleatorio EQU 0x20000400
-primos EQU 0x20000500
 ;################################################################################
 ; Função main()
 Start								;Label Start ... void main(void)

@@ -1,9 +1,8 @@
-; Exemplo.s
+; Laboratório 00.s
 ; Desenvolvido para a placa EK-TM4C1294XL
-; Esquele de um novo Projeto para Keil
-; Prof. Guilherme de S. Peron	- 12/03/2018
-; Prof. Marcos E. P. Monteiro	- 12/03/2018
-; Prof. DaLuz           		- 25/02/2022
+; Polianna Beatriz Basso - 2302578
+; Pedro ...	- RA
+; Prof. Paulo DaLuz  - 25/02/2022
 
 ;################################################################################
 ; Declarações EQU
