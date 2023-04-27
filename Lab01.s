@@ -1,32 +1,30 @@
-; Laboratório 00.s
+; LaboratÃ³rio 01.s
 ; Desenvolvido para a placa EK-TM4C1294XL
 ; Polianna Beatriz Basso - 2302578
-; Pedro ...	- RA
-; Prof. Paulo DaLuz  - 25/02/2022
+; Pedro Henrique Grossi da Silva - 2237172
+; Prof. Paulo DaLuz  - 26/04/2023
 
 ;################################################################################
-; Declarações EQU
+; DeclaraÃ§Ãµes EQU
 ; <NOME>	EQU <VALOR>
 aleatorio EQU 0x20000400
 primos EQU 0x20000500
 ;################################################################################
 	AREA    |.text|, CODE, READONLY, ALIGN=2
 	THUMB
-; Se alguma função do arquivo for chamada em outro arquivo	
-    EXPORT Start					; Permite chamar a função Start a partir de 
+; Se alguma funÃ§Ã£o do arquivo for chamada em outro arquivo	
+    EXPORT Start					; Permite chamar a funÃ§Ã£o Start a partir de 
 									; outro arquivo. No caso startup.s						
-; Se chamar alguma função externa	
+; Se chamar alguma funÃ§Ã£o externa	
 ;	IMPORT <func>          			; Permite chamar dentro deste arquivo uma 
-									; função <func>
+									; funÃ§Ã£o <func>
 ;################################################################################
-; Função main()
+; FunÃ§Ã£o main()
 Start								;Label Start ... void main(void)
-; Comece o código aqui <=========================================================
+; Comece o cÃ³digo aqui <=========================================================
 
 	BL grava_mem
 	BL loop
-	SUB R11, R11, #1
-	LDR R6, =primos
     BL bubble_sort
     B break
 	
@@ -74,14 +72,17 @@ grava_mem
     MOV R0, #19
 	STRB R0, [R10], #1
 	LDR R7, =aleatorio
-    SUB R8, R10, R7 ;TAMANHO DA LISTA
 	BX LR
 
 loop
 	LDRB R0, [R7], #1
+	CMP R0, #1 ;caso seja 1
+	BEQ loop
+	CMP R0, #2 ; caso seja 2
+	STRBEQ R0, [R11], #1
 	LSR R1, R0, #1
 	ADD R1, R1, #1
-	MOV R2, #2
+	MOV R2, #2 
 	PUSH{LR}
 	BL primo
 	POP{LR}
@@ -89,7 +90,7 @@ loop
 	BNE loop
 	LDR R7, =aleatorio
 	LDR R9, =primos
-	SUB R12, R11, R9
+	SUB R11, R11, #1
 	BX LR
 
 primo
@@ -123,8 +124,7 @@ bubble_sort
 	
 break
 
-
-; Final do código aqui <=========================================================
+; Final do cÃ³digo aqui <=========================================================
     NOP
-    ALIGN                       	;garante que o fim da seção está alinhada 
+    ALIGN                       	;garante que o fim da seÃ§Ã£o estÃ¡ alinhada 
     END                         	;fim do arquivo
